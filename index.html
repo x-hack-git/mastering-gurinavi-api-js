@@ -41,15 +41,18 @@
   <script src="js/prefSelectBox.js"></script>
   <script src="js/categorySelectBox.js"></script>
   <script>
-    const URL_BASE = "https://api.gnavi.co.jp/RestSearchAPI"
-    const API_KEY = "17fca3c3c7a943737ef16c35ca4f079b"
-
+    // ぐるなびの API KEY をセットする
+    const API_KEY = "YOUR API KEY"
     const AREA = document.getElementById("js-search-area")
-
     const PREF_SELECT_BOX = new PrefSelectBox("js-search-pref")
-    PREF_SELECT_BOX.load(AREA.value)
-
     const CATEGORY_SELECT_BOX = new CategorySelectBox("js-search-category")
+
+    // information
+    if(API_KEY === "" || API_KEY === "YOUR API KEY"){
+      alert("ぐるなび API KEY を入力してください")
+    }
+
+    PREF_SELECT_BOX.load(AREA.value)
     CATEGORY_SELECT_BOX.load()
 
     AREA.addEventListener("change", function() {

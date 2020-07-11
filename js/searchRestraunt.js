@@ -1,6 +1,7 @@
 const SEARCH_BUTTON = document.getElementById("search-button")
 const SEARCH_TEXT = document.getElementById("search-text")
 const REST_INFO = document.getElementById("restaurant-informations")
+const URL_BASE = "https://api.gnavi.co.jp/RestSearchAPI"
 
 SEARCH_BUTTON.addEventListener("click", () => seachShop())
 
@@ -24,6 +25,12 @@ function createShopListElement(el){
 }
 
 function seachShop(){
+
+  if(API_KEY === "YOUR API KEY"){
+    alert("ぐるなび API KEY を入力してください")
+    return
+  }
+
   // 検索前に結果を空にする
   REST_INFO.innerText = ""
   const searchUrl = generateUrl()
