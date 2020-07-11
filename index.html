@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>通信を使ったプログラムを書いてみる</h1>
+  <button id="search-button">
+    検索
+  </button>
+
+  <select id="js-search-area">
+    <option value="AREA150">北海道</option>
+    <option value="AREA160">東北</option>
+    <option value="AREA110">関東</option>
+    <option value="AREA170">北陸</option>
+    <option value="AREA130">中部・</option>
+    <option value="AREA120">近畿</option>
+    <option value="AREA180">中国</option>
+    <option value="AREA190">四国</option>
+    <option value="AREA140">九州</option>
+    <option value="AREA200">沖縄</option>
+  </select>
+
+  <!-- 都道府県を選択する -->
+  <select id="js-search-pref">
+  </select>
+
+  <!-- カテゴリを選択する -->
+  <select class="category-list" id="js-search-category">
+  </select>
+
+  <input id="search-text" type="text">
+
+  <div id="restaurant-informations">
+    <!-- ここに、レストラン情報を表示させる -->
+  </div>
+  <script src="js/searchRestraunt.js"></script>
+  <script src="js/prefSelectBox.js"></script>
+  <script src="js/categorySelectBox.js"></script>
+  <script>
+    const URL_BASE = "https://api.gnavi.co.jp/RestSearchAPI"
+    const API_KEY = "17fca3c3c7a943737ef16c35ca4f079b"
+
+    const AREA = document.getElementById("js-search-area")
+
+    const PREF_SELECT_BOX = new PrefSelectBox("js-search-pref")
+    PREF_SELECT_BOX.load(AREA.value)
+
+    const CATEGORY_SELECT_BOX = new CategorySelectBox("js-search-category")
+    CATEGORY_SELECT_BOX.load()
+
+    AREA.addEventListener("change", function() {
+      PREF_SELECT_BOX.load(AREA.value)
+    })
+  </script>
+</body>
+</html>
